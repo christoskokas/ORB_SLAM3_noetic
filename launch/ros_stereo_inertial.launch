@@ -1,5 +1,5 @@
 <launch>
-  <node name="ros_stereo_inertial" pkg="orbslam3" type="ros_stereo_inertial" output="screen" args="$(find orbslam3)/Vocabulary/ORBvoc.txt $(find orbslam3)/Examples/Stereo-Inertial/husky_camera.yaml true">
+  <node name="ros_stereo_inertial" pkg="orbslam3" type="ros_stereo_inertial" output="screen" args="$(find orbslam3)/Vocabulary/ORBvoc.txt $(find orbslam3)/Examples/Stereo-Inertial/husky_camera.yaml false">
 
     <remap from="camera/right/image_raw" to="camera_1/right/image_raw" />
     <remap from="camera/left/image_raw" to="camera_1/left/image_raw" />

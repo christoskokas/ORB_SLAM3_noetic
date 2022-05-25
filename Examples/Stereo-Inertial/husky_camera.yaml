@@ -44,19 +44,22 @@ Camera.width: 752
 Camera.height: 480
 
 # Camera frames per second 
-Camera.fps: 20
+Camera.fps: 30
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 1
 
+Stereo.b: 0.12
+
 # Close/Far threshold. Baseline times.
-Stereo.ThDepth: 60.0
+Stereo.ThDepth: 50.0
+
 Stereo.T_c1_c2: !!opencv-matrix
   rows: 4
   cols: 4
   dt: f
-  data: [1.0, 0.0, 0.0, 0.0,
-         0.0, 1.0, 0.0, -0.120,
+  data: [1.0, 0.0, 0.0, -0.12,
+         0.0, 1.0, 0.0, 0.0,
          0.0, 0.0, 1.0, 0.0,
          0.0, 0.0, 0.0, 1.0]
 
@@ -65,68 +68,71 @@ IMU.T_b_c1: !!opencv-matrix
   rows: 4
   cols: 4
   dt: f
-  data: [1.0, 0.0, 0.0, 0.0,
-         0.0, 1.0, 0.0, -0.060,
-         0.0, 0.0, 1.0, 0.0,
+  data: [0.0, -1.0, 0.0, 0.06,
+         0.0, 0.0, -1.0, 0.0,
+         1.0, 0.0, 0.0, 0.0,
          0.0, 0.0, 0.0, 1.0]
 
 # IMU noise
-IMU.NoiseGyro: 0.06976312748 # 4.9329980523227564e-03/(sqrt(1/200))
-IMU.NoiseAcc: 0.07024412072 # 4.9670094100437365e-03/(sqrt(1/200))
-IMU.GyroWalk: 0.00000490555 # 6.9375052359332154e-05*(sqrt(1/200))
-IMU.AccWalk: 0.00000456324 # 6.4534043207122046e-05*(sqrt(1/200))
-IMU.Frequency: 200.0
+# It is common practice to increase the random walk standard deviations provided by
+# the IMU manufacturer (say multiplying them by 10) to account for unmodelled effects
+# and improving the IMU initialization convergence.
+IMU.NoiseGyro: 4.9329980523227564e-02 # 4.9329980523227564e-03/(sqrt(1/200))
+IMU.NoiseAcc: 4.9670094100437365e-02 # 4.9670094100437365e-03/(sqrt(1/200))
+IMU.GyroWalk: 6.9375052359332154e-04 #*10 # 6.9375052359332154e-05*(sqrt(1/200))
+IMU.AccWalk: 6.4534043207122046e-04 #*10 # 6.4534043207122046e-05*(sqrt(1/200))
+IMU.Frequency: 400.0
 
-LEFT.height: 480
-LEFT.width: 752
-LEFT.D: !!opencv-matrix
-   rows: 1
-   cols: 5
-   dt: d
-   data: [0.0, 0.0, 0.0, 0.0, 0.0]
-LEFT.K: !!opencv-matrix
-   rows: 3
-   cols: 3
-   dt: d
-   data: [263.2786443617774, 0.0, 376.5, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 1.0]
-LEFT.R:  !!opencv-matrix
-   rows: 3
-   cols: 3
-   dt: d
-   data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
-LEFT.Rf:  !!opencv-matrix
-   rows: 3
-   cols: 3
-   dt: f
-   data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
-LEFT.P:  !!opencv-matrix
-   rows: 3
-   cols: 4
-   dt: d
-   data: [263.2786443617774, 0.0, 376.5, -0.0, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 0.0, 1.0, 0.0]
+# LEFT.height: 480
+# LEFT.width: 752
+# LEFT.D: !!opencv-matrix
+#    rows: 1
+#    cols: 5
+#    dt: d
+#    data: [0.0, 0.0, 0.0, 0.0, 0.0]
+# LEFT.K: !!opencv-matrix
+#    rows: 3
+#    cols: 3
+#    dt: d
+#    data: [263.2786443617774, 0.0, 376.5, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 1.0]
+# LEFT.R:  !!opencv-matrix
+#    rows: 3
+#    cols: 3
+#    dt: d
+#    data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+# LEFT.Rf:  !!opencv-matrix
+#    rows: 3
+#    cols: 3
+#    dt: f
+#    data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+# LEFT.P:  !!opencv-matrix
+#    rows: 3
+#    cols: 4
+#    dt: d
+#    data: [263.2786443617774, 0.0, 376.5, -0.0, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 0.0, 1.0, 0.0]
 
-RIGHT.height: 480
-RIGHT.width: 752
-RIGHT.D: !!opencv-matrix
-   rows: 1
-   cols: 5
-   dt: d
-   data: [0.0, 0.0, 0.0, 0.0, 0.0]
-RIGHT.K: !!opencv-matrix
-   rows: 3
-   cols: 3
-   dt: d
-   data: [263.2786443617774, 0.0, 376.5, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 1.0]
-RIGHT.R:  !!opencv-matrix
-   rows: 3
-   cols: 3
-   dt: d
-   data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
-RIGHT.P:  !!opencv-matrix
-   rows: 3
-   cols: 4
-   dt: d
-   data: [263.2786443617774, 0.0, 376.5, -31.59343732341329, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 0.0, 1.0, 0.0]
+# RIGHT.height: 480
+# RIGHT.width: 752
+# RIGHT.D: !!opencv-matrix
+#    rows: 1
+#    cols: 5
+#    dt: d
+#    data: [0.0, 0.0, 0.0, 0.0, 0.0]
+# RIGHT.K: !!opencv-matrix
+#    rows: 3
+#    cols: 3
+#    dt: d
+#    data: [263.2786443617774, 0.0, 376.5, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 1.0]
+# RIGHT.R:  !!opencv-matrix
+#    rows: 3
+#    cols: 3
+#    dt: d
+#    data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+# RIGHT.P:  !!opencv-matrix
+#    rows: 3
+#    cols: 4
+#    dt: d
+#    data: [263.2786443617774, 0.0, 376.5, -31.59343732341329, 0.0, 263.2786443617774, 240.5, 0.0, 0.0, 0.0, 1.0, 0.0]
 
 #--------------------------------------------------------------------------------------------
 # ORB Parameters
