@@ -1,0 +1,7 @@
+<launch>
+  <node name="ros_mono_inertial" pkg="orbslam3" type="ros_mono_inertial" output="screen" args="$(find orbslam3)/Vocabulary/ORBvoc.txt $(find orbslam3)/Examples/Monocular-Inertial/husky_camera.yaml false">
+
+    <remap from="camera/image_raw" to="camera_1/left/image_raw" />
+    <remap from="imu" to="imu/data" />
+  </node>
+</launch>
