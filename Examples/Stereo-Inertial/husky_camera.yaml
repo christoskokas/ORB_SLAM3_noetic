@@ -44,7 +44,7 @@ Camera.width: 752
 Camera.height: 480
 
 # Camera frames per second 
-Camera.fps: 30
+Camera.fps: 15
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
 Camera.RGB: 1
@@ -56,7 +56,7 @@ Stereo.T_c1_c2: !!opencv-matrix
   rows: 4
   cols: 4
   dt: f
-  data: [1.0, 0.0, 0.0, -0.12,
+  data: [1.0, 0.0, 0.0, 0.12,
          0.0, 1.0, 0.0, 0.0,
          0.0, 0.0, 1.0, 0.0,
          0.0, 0.0, 0.0, 1.0]
@@ -66,19 +66,19 @@ IMU.T_b_c1: !!opencv-matrix
   rows: 4
   cols: 4
   dt: f
-  data: [1.0, 0.0, 0.0, 0.06,
-         0.0, 1.0, 0.0, 0.5,
-         0.0, 0.0, 1.0, -0.15,
+  data: [0.0, 0.0, 1.0, 0.15,
+         -1.0, 0.0, 0.0, 0.06,
+         0.0, -1.0, 0.0, 0.5,
          0.0, 0.0, 0.0, 1.0]
 
 # IMU noise
 # It is common practice to increase the random walk standard deviations provided by
 # the IMU manufacturer (say multiplying them by 10) to account for unmodelled effects
 # and improving the IMU initialization convergence.
-IMU.NoiseGyro: 0.06976312748 # 4.9329980523227564e-03/(sqrt(1/200))
-IMU.NoiseAcc: 0.07024412072 # 4.9670094100437365e-03/(sqrt(1/200))
-IMU.GyroWalk: 0.0000490555 #*10 # 6.9375052359332154e-05*(sqrt(1/200))
-IMU.AccWalk: 0.0000456324 #*10 # 6.4534043207122046e-05*(sqrt(1/200))
+IMU.NoiseGyro: 0.06976312748 #1.4670666992126587e-13 #0.06976312748 # 4.9329980523227564e-03/(sqrt(1/200))
+IMU.NoiseAcc: 0.07024412072 #2.0125357034646504e-03 #0.07024412072 # 4.9670094100437365e-03/(sqrt(1/200))
+IMU.GyroWalk: 0.0000490555 #7.1216845610493303e-15 #0.0000490555 #*10 # 6.9375052359332154e-05*(sqrt(1/200))
+IMU.AccWalk: 0.0000456324 #5.5014314882479451e-05 #0.0000456324 #*10 # 6.4534043207122046e-05*(sqrt(1/200))
 IMU.Frequency: 200.0
 
 # LEFT.height: 480
