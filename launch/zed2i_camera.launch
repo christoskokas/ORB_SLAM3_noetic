@@ -1,0 +1,8 @@
+<launch>
+  <node name="ros_stereo_inertial" pkg="orbslam3" type="ros_stereo_inertial" output="screen" args="$(find orbslam3)/Vocabulary/ORBvoc.txt $(find orbslam3)/Examples/Stereo-Inertial/zed2i_camera.yaml false">
+
+    <remap from="camera/right/image_raw" to="/zed2i/zed_node/right_raw/image_raw_color" />
+    <remap from="camera/left/image_raw" to="/zed2i/zed_node/left_raw/image_raw_color" />
+    <remap from="imu" to="/zed2i/zed_node/imu/data" />
+  </node>
+</launch>

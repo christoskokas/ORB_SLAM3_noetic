@@ -1,3 +1,67 @@
+# ORB_SLAM3_noetic
+
+ORB_SLAM3_noetic is a package for ORB_SLAM3 for Ubuntu 20.04 with ROS Noetic.
+
+### Prerequisites
+
+ORB_SLAM3_noetic has been tested on Ubuntu 20.04 with ROS Noetic, Eigen 3.3.7, OpenCV 4.2.0 and Pangolin 0.8.
+
+Install Eigen using the command:
+
+```console
+sudo apt update
+sudo apt install libeigen3-dev
+```
+
+Install OpenCV:
+
+```console
+sudo apt install libopencv-dev python3-opencv
+```
+
+Install Sophus:
+
+```console
+sudo apt-get install ros-noetic-sophus
+```
+
+### Pangolin
+
+ORB_SLAM3 uses Pangolin for visualization and user interface. Dowload and install instructions can be found at: https://github.com/stevenlovegrove/Pangolin.
+
+### Installing ORB_SLAM3_noetic
+
+* Download ORB_SLAM3_noetic package:
+
+```console
+git clone --recursive https://github.com/christoskokas/ORB_SLAM3_noetic.git
+```
+
+* Execute build.sh script to build thirdparty packages:
+
+```console
+chmod +x build.sh
+./build.sh
+```
+
+* Build the ROS package:
+
+```console
+catkin build orbslam3
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ORB-SLAM3
 
 ### V1.0, December 22th, 2021

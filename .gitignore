@@ -86,3 +86,4 @@ borrar/*
 push.sh
 launch/any_stereo_inertial.launch
 Examples/Stereo-Inertial/anymal_camera.yaml
+.vscode
