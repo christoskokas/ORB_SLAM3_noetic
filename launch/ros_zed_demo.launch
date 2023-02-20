@@ -1,0 +1,7 @@
+<launch>
+  <node name="ros_stereo" pkg="orbslam3" type="ros_stereo" output="screen" args="$(find orbslam3)/Vocabulary/ORBvoc.txt $(find orbslam3)/Examples/Stereo/zed_demo.yaml false">
+
+    <remap from="camera/right/image_raw" to="/zed/zed_node/right/image_rect_gray" />
+    <remap from="camera/left/image_raw" to="/zed/zed_node/left/image_rect_gray" />
+  </node>
+</launch>
